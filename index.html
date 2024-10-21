@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESP8266 Audio Analysis</title>
+    <script>
+        function analyzeAudio() {
+            fetch('/analyze-audio', {
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                alert(data.message + " (Max RMS: " + data.max_rms + ")");
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert("An error occurred: " + error);
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>ESP8266 LED Control via Audio Analysis</h1>
+    <p>Click the button below to analyze the audio file and control the LED:</p>
+    <button onclick="analyzeAudio()">Analyze Audio and Control LED</button>
+</body>
+</html>

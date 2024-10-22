@@ -12,7 +12,11 @@
             .then(response => response.json())
             .then(data => {
                 console.log(data);
-                alert(data.message + " (Max RMS: " + data.max_rms + ")");
+                if (data.message) {
+                    alert(data.message + " (Non-Silent Frames: " + data.non_silent_frames + ")");
+                } else if (data.error) {
+                    alert("Error: " + data.error);
+                }
             })
             .catch(error => {
                 console.error('Error:', error);
